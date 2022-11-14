@@ -1,4 +1,4 @@
-Quality Control of the raw reads is run here using `doQC1.sh`. 
+Quality Control of the raw reads is ran here using `doQC1.sh`. 
 ### Modules used
 * Fastqc ver. 0.11.9
 * MultiQC ver. 1.8
