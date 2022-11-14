@@ -14,6 +14,7 @@ holoclonal_reads=$raw_reads_dir/1*
 parental_reads=$raw_reads_dir/P*
 links_dir="./analysis/rawqc/fastqlnk"
 
+mkdir $links_dir
 # Load modules
 
 module add UHTS/Quality_control/fastqc/0.11.9
@@ -43,8 +44,7 @@ fi
 if [ 1 == 0 ]
 then
 	mkdir ./analysis/rawqc/results
-	fastqc -t 4 -o ./analysis/rawqc/results ./analysis/rawqc/fastqlnk/* 
-	#fastp -i bc2023.fastq.gz -W 10 -5 -3 -M 10 -l 1000 -G -A -w 4 -o bc2023_clean.fastq.gz
+	fastqc -t 4 -o ./analysis/rawqc/results ./analysis/rawqc/fastqlnk/*
 fi
 
 # Run multiQC
