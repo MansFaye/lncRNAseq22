@@ -14,6 +14,7 @@ See also: 1.Tièche, C. C. et al. Tumor Initiation Capacity and Therapy Resistan
 
 ## Packages
 FastQC (ver. 0.11.9):
+
 MultiQC (ver. 1.8):
 
 ## Data
@@ -21,7 +22,7 @@ MultiQC (ver. 1.8):
 RNA-seq data from TruSeq Stranded mRNA libraries, 3 replicates per clone.
 
 ### Reference data:
-
+Genome Reference Consortium Human Build 38 : Fetched from https://www.gencodegenes.org/human/release_21.html on 14.11.2022
 
 # Quality Control of raw reads
 We check for quality of the sequencing data using the FastQC package, and visualize results for all replicates using MultiQC.
