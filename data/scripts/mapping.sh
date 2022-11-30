@@ -15,28 +15,43 @@ ref_files_dir="../../references"
 mapping_dir="./data/mapping"
 indexes_dir="$ref_files_dir/indexes"
 forward_fastqs=$rawqc_links_dir/*R1*
-mkdir $ref_files_dir/indexes
+mkdir $indexes_dir
 
 #Load Modules
 module add UHTS/Aligner/STAR/2.7.9a
+module add UHTS/Analysis/samtools/1.8
 
 # Index the reference genome using STAR
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	STAR --runThreadN 6 --runMode genomeGenerate --genomeDir $indexes_dir --genomeFastaFiles $ref_files_dir/GRCh38.genome.fa 
 fi
 
 # Align the reads using STAR
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	for fastq in $forward_fastqs
 	do
 		fname=$(basename $fastq .gz)
 		ID=${fname:0:3}
 		reverse=$rawqc_links_dir/$ID*R2*
-		STAR --runMode alignReads --genomeDir $indexes_dir --runThreadN 6 --genomeLoad  LoadAndKeep --readFilesCommand zcat --readFilesIn $fastq $reverse --outSAMtype BAM Unsorted --outFileNamePrefix $mapping_dir/$ID
+		STAR --runMode alignReads --genomeDir $indexes_dir --runThreadN 6 --genomeLoad  LoadAndKeep --readFilesCommand zcat --readFilesIn $fastq $reverse --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $mapping_dir/$ID
 	done
 fi
+# The first run of the alignement used "BAM Unsorted" instead of "BAM SortedByCoordinate". We therefore had to sort the file before running the assembly.
+
+
+# Index one of the BAM files to visualize it in IGV 
+
+if [ 1 == 1 ]
+then
+	bam=$mapping_dir/1_1Aligned.out.sorted.bam # BAM file to be indexed
+	samtools index -b -@ 6 $bam
+fi
+
+
+
+
 
