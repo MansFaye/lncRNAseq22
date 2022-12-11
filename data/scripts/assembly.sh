@@ -2,9 +2,9 @@
 #SBATCH --mail-type=end,fail
 #SBATCH --mail-user=mohamed.faye@students.unibe.ch
 #SBATCH --job-name="Assembly_MF"
-#SBATCH -c 9
-#SBATCH --time=5:00:00
-#SBATCH --mem=150G
+#SBATCH -c 6
+#SBATCH --time=2:30:00
+#SBATCH --mem=100G
 
 # Move to project directory and set directory variables
 
@@ -22,28 +22,15 @@ mkdir $assembly_dir
 module add UHTS/Aligner/stringtie/1.3.3b
 module add UHTS/Analysis/samtools/1.8
 
-# Sort the output BAM files
-# This step is not necessary if the "--outSAMtype BAM SortedByCoordinate" option was used during mapping 
-
-if [ 1 == 0 ]
-then
-	for bam in $mapping_dir/*.bam
-	do
-		bname=$(basename $bam .bam)
-		samtools sort $bam -o $mapping_dir/${bname}.sorted.bam -m 50G -@ 3
-	done
-fi
-
-
 # Perform the assembly
 
 if [ 1 == 1 ]
 then
-	for bam in $mapping_dir/*.sorted.bam # Specify *.sorted.bam if you ran the previous step
+	for bam in $mapping_dir/*sorted*.bam
 	do
 		fname=$(basename $bam)
 		ID=${fname:0:3}
-		stringtie $bam -o $assembly_dir/${ID}Annot.gtf -p 9 -G $ref_annotation --rf 
+		stringtie $bam -o $assembly_dir/${ID}Annot.gtf -p 6 -G $ref_annotation --rf 
 	done
 fi
 
