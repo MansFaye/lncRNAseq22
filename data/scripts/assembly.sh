@@ -2,9 +2,9 @@
 #SBATCH --mail-type=end,fail
 #SBATCH --mail-user=mohamed.faye@students.unibe.ch
 #SBATCH --job-name="Assembly_MF"
-#SBATCH -c 6
-#SBATCH --time=2:30:00
-#SBATCH --mem=100G
+#SBATCH -c 2
+#SBATCH --time=0:02:00
+#SBATCH --mem=8G
 
 # Move to project directory and set directory variables
 
@@ -41,5 +41,12 @@ then
 	stringtie --rf --merge $assembly_dir/*.gtf -o $assembly_dir/merged.gtf -G $ref_annotation
 fi
 
+
+# Map gene names to transcript names
+
+if [ 1 == 1 ]
+then
+        awk -F $'\t' '$3=="transcript"' $assembly_dir/merged.gtf | grep 'gene_name' | awk -F $'\t' '{print $9}' | awk -F ';' '{print $2, $3}' | awk 'BEGIN { OFS="\t" }{print $2, $4}' | sed 's/["]//g' > $assembly_dir/IDs_map.txt
+fi
 
 
