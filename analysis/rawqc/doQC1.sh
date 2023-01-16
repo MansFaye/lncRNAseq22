@@ -26,16 +26,12 @@ if [ 1 == 0 ]
 then
 	for fastq in $holoclonal_reads
 	do
-        	echo $fastq >> ./analysis/rawqc/read_count.txt
         	ln -s ../../../$fastq $links_dir
-        	zcat $fastq | awk '/@/' | wc -l >> ./analysis/rawqc/read_count.txt
 	done
 
 	for fastq in $parental_reads
 	do
-	        echo $fastq >> ./analysis/rawqc/read_count.txt
         	ln -s ../../../$fastq $links_dir
-        	zcat $fastq | awk '/@/' | wc -l >> ./analysis/rawqc/read_count.txt
 	done
 fi 
 
