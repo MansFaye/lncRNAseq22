@@ -71,4 +71,22 @@ volc_plot <- plot_volcano(sleuth_out, "conditionP", test_type = "wt", sig_level 
             size=2), show.legend=FALSE)
 dev.print(file="./analysis/Diff_Expression/volcano.png", device=png, width=800)
 
+## Top candidates expression levels (see after step 7)
+if (1==0){
+  jpeg("./analysis/Diff_Expression/MSTRG.12388.2.png", quality = 100)
+  plot_bootstrap(sleuth_out, 
+                 target_id = "MSTRG.12388.2", 
+                 units = "tpm", 
+                 color_by = "condition")
+  dev.off()
+  
+  jpeg("./analysis/Diff_Expression/MSTRG.10368.2.png", quality = 100)
+  plot_bootstrap(sleuth_out, target_id = "MSTRG.10368.2", units = "tpm", color_by = "condition")
+  dev.off()
+  
+  jpeg("./analysis/Diff_Expression/MSTRG.32577.2.png", quality = 100)
+  plot_bootstrap(sleuth_out, target_id = "MSTRG.32577.2", units = "tpm", color_by = "condition")
+  dev.off()
+}
+
 
