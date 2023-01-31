@@ -2,9 +2,9 @@
 #SBATCH --mail-type=fail
 #SBATCH --mail-user=mohamed.faye@students.unibe.ch
 #SBATCH --job-name="Assembly_MF"
-#SBATCH -c 2
-#SBATCH --time=0:06:00
-#SBATCH --mem=4G
+#SBATCH -c 6
+#SBATCH --time=2:00:00
+#SBATCH --mem=30G
 
 # Move to project directory and set directory variables
 
@@ -20,11 +20,10 @@ mkdir $assembly_dir
 # Load Modules
 
 module add UHTS/Aligner/stringtie/1.3.3b
-module add UHTS/Analysis/samtools/1.8
 
 # Perform the assembly
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	for bam in $mapping_dir/*sorted*.bam
 	do
@@ -36,7 +35,7 @@ fi
 
 # Merge the GTF files
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	stringtie --rf --merge $assembly_dir/*.gtf -o $assembly_dir/merged.gtf -G $ref_annotation
 fi
@@ -44,7 +43,7 @@ fi
 
 # Map gene names to transcript names
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
         awk -F $'\t' '$3=="transcript"' $assembly_dir/merged.gtf | grep 'gene_name' | awk -F $'\t' '{print $9}' | awk -F ';' '{print $2, $3}' | awk 'BEGIN { OFS="\t" }{print $2, $4}' | sed 's/["]//g' > $assembly_dir/IDs_map.txt
 fi
@@ -52,7 +51,7 @@ fi
 
 # Summarize the content of the merged GTF gile
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	## Number of transcripts, genes, exons and novel transcripts
 	echo "transcripts" | tr '\n' '\t' > $assembly_dir/summary.txt

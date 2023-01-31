@@ -37,8 +37,8 @@ candidates <- results_tbl[which(!results_tbl$coding),]
 top_candidates <- results_tbl[which(!results_tbl$coding & (results_tbl$cage | results_tbl$polya)),]
 
 # Save the tables
-write.csv(candidates, "./analysis/postDE_analysis/novel_candidates.csv", row.names=FALSE)
-write.csv(top_candidates, "./analysis/postDE_analysis/top_novel_candidates.csv", row.names=FALSE)
+write.csv(candidates, "./analysis/postDE_analysis/novel_candidates.tsv", row.names=FALSE)
+write.csv(top_candidates, "./analysis/postDE_analysis/top_novel_candidates.tsv", row.names=FALSE)
 
 # Make a df for plotting
 df1 <- data.frame(coding_status=rep(c("coding", "non-coding"), each=2), annotation=c("novel","annotated","novel","annotated"),

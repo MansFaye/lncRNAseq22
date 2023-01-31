@@ -3,7 +3,7 @@
 #SBATCH --mail-user=mohamed.faye@students.unibe.ch
 #SBATCH --job-name="Quantif_MF"
 #SBATCH -c 8
-#SBATCH --time=4:30:00
+#SBATCH --time=5:00:00
 #SBATCH --mem=60G
 
 # Move to project directory and set directory variables
@@ -55,5 +55,18 @@ then
                 kallisto quant -i $quantification_dir/transcripts_kallisto -b 100 -o $quantification_dir/holoclonal${i} -t 8 --rf-stranded $fastq_links_dir/1_${i}*R1*.fastq.gz $fastq_links_dir/1_${i}*R2*.fastq.gz
         done
 fi
+
+# Check quantification numbers
+
+if [ 1 == 1 ]
+then
+	for file in $quantification_dir/*/abundance.tsv
+	do
+		awk -F $'\t' '$4!=0' $file | wc -l | awk 'BEGIN {print "transcripts detected"} {print $0-1}' >> $quantification_dir/summary.txt
+		awk -F $'\t' '$4!=0' $file | grep MSTRG | wc -l	|awk 'BEGIN {print "novel transcripts detected"} {print $0}' >> $quantification_dir/summary.txt	
+		awk -F $'\t' '$4!=0' $file | awk -F $'\t' '{sum+=$5;} END{print sum;}' | awk 'BEGIN {print "TPMS sum"} {print $0}' >> $quantification_dir/summary.txt
+	done
+fi
+
 
 

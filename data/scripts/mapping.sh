@@ -23,7 +23,7 @@ module add UHTS/Analysis/samtools/1.8
 
 # Index the reference genome using STAR
 
-if [ 1 == 0 ]
+if [ 1 == 1 ]
 then
 	STAR --runThreadN 6 --runMode genomeGenerate --genomeDir $indexes_dir --genomeFastaFiles $ref_files_dir/GRCh38.genome.fa 
 fi
