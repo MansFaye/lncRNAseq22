@@ -1,6 +1,5 @@
 # Annotation and characterization of lncRNAs in Lung Cancer
-Identification of differentially expressed protein-coding and long noncoding genes in the cancer line A549's parental line and holoclonal subpopulation.  
-
+Lung cancer is the first cause of cancer-related mortality, and non-small cell lung cancers (NSCLC) make up more than 80% of them. Three distinct subpopulations were identified within the NSCLC cell line A549, with one in particular showing high expression of cancer stem-cell (CSC)-related mRNAs and protein markers. CSCs have been known to be resistant to most conventional therapeutics, making them promising targets to improve cancer therapy. As the implication of lncRNAs in cancer stemness and tumorigenesis is becoming clearer in recent years, we identified protein-coding and lncRNA genes that were differentially expressed between the holoclonal subpopulation and parental line. 
 
 See also: Tièche, C. C. et al. Tumor Initiation Capacity and Therapy Resistance Are Differential Features of EMT-Related Subpopuliations in the NSCLC Cell Line A549. Neoplasia 21, 185-196 (2019). doi:10.1016/j.neo.2018.09.008
 
@@ -14,15 +13,25 @@ See also: Tièche, C. C. et al. Tumor Initiation Capacity and Therapy Resistance
 
 ## Softwares / Packages
 BEDTools (ver. 2.29.2): https://bedtools.readthedocs.io/en/latest/ 
+
 CPAT (ver. 1.2.4): https://cpat.readthedocs.io/en/latest/
+
 Cufflinks (ver. 2.2.1): http://cole-trapnell-lab.github.io/cufflinks/
+
 FastQC (ver. 0.11.9): https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
 Integrative Genomics Viewer (ver. 2.15.2): https://software.broadinstitute.org/software/igv/
+
 Kallisto (ver. 0.46.0): https://pachterlab.github.io/kallisto/
+
 MultiQC (ver. 1.8): https://multiqc.info/
+
 Samtools (ver. 1.8): https://www.htslib.org/
+
 Sleuth (ver. 0.30.1): https://pachterlab.github.io/sleuth/
+
 STAR (ver. 2.7.9a): https://github.com/alexdobin/STAR
+
 Stringtie (ver. 1.3.3b): https://ccb.jhu.edu/software/stringtie/index.shtml
 
 ## Data
